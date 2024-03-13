@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2016",                                  
+    "module": "commonjs",                                
+    "rootDir": "./src",                                 
+    "outDir": "./dist",                              
+    "esModuleInterop": true,
+    "strictPropertyInitialization": false,   // Typeorm issue                        
+    "strict": true,                                      
+  }
+}
