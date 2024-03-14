@@ -4,8 +4,6 @@ import {
 import { User } from "./entities/User";
 import { config } from "../config";
 
-console.log(config);
-
 export const dataSource = new DataSource({
     type: "postgres",
     host: config.dbHost,

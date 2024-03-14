@@ -9,7 +9,7 @@ export const loadApplicationModules = (app: Application) : void => {
 };
 
 export const loadDatabase = async (dataSource: DataSource) : Promise<void> => {
-    await container.resolve(DatabaseLoader).connectDB(dataSource); // How this is  calling async ?
+    await container.resolve(DatabaseLoader).connectDB(dataSource);
 };
 
 // export const loadDatabase = (dataSource: DataSource) : void => {

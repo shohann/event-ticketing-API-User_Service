@@ -14,7 +14,7 @@ const main = async () => {
     await loadDatabase(dataSource); // await dataSource.initialize();
     
     httpServer.listen(port, async () => {
-     console.log('User is Listening to Port 8001');
+     console.log('User service is Listening to Port 8001');
     });
   } catch (error: any) {
     console.log(error.message);
