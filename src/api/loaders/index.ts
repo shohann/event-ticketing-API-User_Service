@@ -3,6 +3,15 @@ import { Application } from "express";
 import ExpressLoader from "./ExpressLoader";
 import DatabaseLoader from "./DatabaseLoader";
 import { DataSource } from "typeorm";
+import { IMessageBroker } from "../../interfaces/loaders/IMessageBroker";
+
+export const loadMessageBroker = async (): Promise<void> => {
+    const messageBroker = container.resolve<IMessageBroker>('IMessageBroker');
+
+    setTimeout(async () => {
+        await messageBroker.createChannel();
+    }, 8000); 
+};
 
 export const loadApplicationModules = (app: Application) : void => {
     container.resolve(ExpressLoader).LoadApp(app);

@@ -3,7 +3,8 @@ import {
     PrimaryGeneratedColumn, 
     Column,
     CreateDateColumn,
-    UpdateDateColumn 
+    UpdateDateColumn,
+    Index
 } from "typeorm";
 import { IUser } from "../../models/IUser";
 
@@ -13,10 +14,11 @@ export enum Role {
 }
 
 @Entity('user')
-export class User implements IUser{
+export class User implements IUser {
     @PrimaryGeneratedColumn()
     id: number
 
+    @Index({ unique: true })
     @Column()
     email: string;
 

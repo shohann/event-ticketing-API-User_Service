@@ -21,6 +21,18 @@ class UsersController {
 
         return res.status(201).json(user);
     }
+
+    public async login(req: Request, res: Response): Promise<void> {
+        const { email, password } = req.body;
+
+        const payload = await this.usersService
+            .logIn({
+                email,
+                password
+            });
+
+        res.status(200).json(payload);
+    }
 };
 
 export default UsersController;

@@ -1,3 +1,5 @@
+import { Role } from "../database/entities/User";
+
 export interface IUser {
     id: number,
     email: string,
@@ -5,6 +7,7 @@ export interface IUser {
     firstName: string,
     lastName: string,
     password: string,
+    role: Role,
     createdAt: Date,
     updatedAt: Date
 };

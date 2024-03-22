@@ -6,7 +6,7 @@ import { ICreateUser } from "../models/ICreateUser";
 import IUserRepository from "../interfaces/repositories/IUserRepository";
 
 class UsersRepository implements IUserRepository {
-    private repository: Repository <User>;
+    private repository: Repository<User>;
 
     constructor() {
         this.repository = dataSource.getRepository(User);
@@ -22,6 +22,12 @@ class UsersRepository implements IUserRepository {
         });
 
         await this.repository.save(user);
+
+        return user;
+    }
+
+    public async findUserByEmail(email: string): Promise<IUser | null> {
+        const user = await this.repository.findOne({ where: { email } });
 
         return user;
     }
