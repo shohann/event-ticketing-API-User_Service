@@ -6,6 +6,7 @@ export default function createApp(): express.Application {
   const app: Application = express();
   loadApplicationModules(app);
 
+
   return app;
 };
 

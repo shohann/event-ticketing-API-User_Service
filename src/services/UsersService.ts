@@ -9,6 +9,8 @@ import IAuthProvider from '../interfaces/providers/IAuthProvider';
 import { config } from '../config';
 import ILogInRequestDTO from '../api/dtos/ILogInRequestDTO';
 import ILogInResponseDTO from '../api/dtos/ILogInResponseDTO';
+import IProfileResponseDTO from '../api/dtos/IProfileResponseDTO';
+import NotFoundException from '../utils/exceptions/not.found.exception';
 
 @injectable()
 class UsersService implements IUserService {
@@ -70,9 +72,13 @@ class UsersService implements IUserService {
         const password = data.password;
 
         const user = await this.repository.findUserByEmail(email);
+        // if (!user) {
+        //     throw new Error('User not authenticated');
+        // }
         if (!user) {
-            throw new Error('User not authenticated');
+            throw new NotFoundException('User not found');
         }
+
 
         const isAuthenticated = this.hashProvider.compareHash(password, user.password);
         if (!isAuthenticated) {
@@ -85,6 +91,23 @@ class UsersService implements IUserService {
             id: user.id,
             role: user.role,
             token: token
+        }
+    }
+
+    public async profile(userId: number): Promise<IProfileResponseDTO> {
+        const user = await this.repository.findUserById(userId);
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        return {
+            id: user.id,
+            email: user.email,
+            userName: user.userName,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.role
         }
     }
     

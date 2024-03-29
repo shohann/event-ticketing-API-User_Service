@@ -1,7 +1,7 @@
 import { IUser } from "../../models/IUser"
 
 export interface Payload {
-  id: string
+  id: number
   role: string
   exp: number
 }
